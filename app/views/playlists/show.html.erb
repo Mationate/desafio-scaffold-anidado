@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Nombre de la playlist:</strong>
   <%= @playlist.name %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @playlist.user %>
+  <strong>Creado por:</strong>
+  <%= @playlist.user.name %>
 </p>
 
 <%= link_to 'Edit', edit_playlist_path(@playlist) %> |
