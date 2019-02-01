@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+<h2>Detalle de la playlist</h2>
 <p>
-  <strong>Nombre de la playlist:</strong>
+  <strong>Nombre:</strong>
   <%= @playlist.name %>
 </p>
 
@@ -12,3 +13,31 @@
 
 <%= link_to 'Edit', edit_playlist_path(@playlist) %> |
 <%= link_to 'Back', playlists_path %>
+
+<h2>Agregar una canción a esta playlist</h2>
+
+<%= form_with(model: [@playlist, @song], local: true) do |form| %>
+  <div class="field">
+    <%= form.label :artist %>
+    <%= form.text_field :artist %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>  
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<h2>Lista de canciones</h2>
+<ul>
+  <% @songs.each do |song| %>
+    <li><%= song.artist %> - <%= song.name %>
+    <%= link_to 'Eliminar', playlist_song_path(@playlist.id, song.id), method: :delete, data: { confirm: 'Seguro?' } %>
+    </li>
+  <% end %>
+</ul>
+
