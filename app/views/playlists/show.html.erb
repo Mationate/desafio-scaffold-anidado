@@ -14,6 +14,9 @@
 <%= link_to 'Edit', edit_playlist_path(@playlist) %> |
 <%= link_to 'Back', playlists_path %>
 
+
+<br>
+<br>
 <h2>Agregar una canción a esta playlist</h2>
 
 <%= form_with(model: [@playlist, @song], local: true) do |form| %>
@@ -31,13 +34,26 @@
     <%= form.submit %>
   </div>
 <% end %>
+<br>
 
 <h2>Lista de canciones</h2>
-<ul>
-  <% @songs.each do |song| %>
-    <li><%= song.artist %> - <%= song.name %>
-    <%= link_to 'Eliminar', playlist_song_path(@playlist.id, song.id), method: :delete, data: { confirm: 'Seguro?' } %>
-    </li>
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Canción</th>
+      <th>Artista</th>
+      <th></th>
+    </tr>  
+  </thead>
+  <tbody>
+    <% @songs.each do |song| %>
+    <tr>
+      <td><%= song.name %></td>
+      <td> <%= song.artist %> </td>
+      <td><%= link_to 'Eliminar', playlist_song_path(@playlist.id, song.id), method: :delete, data: { confirm: 'Seguro?' } %></td>
+    </tr>  
   <% end %>
-</ul>
+  </tbody>
+</table>
+
 
